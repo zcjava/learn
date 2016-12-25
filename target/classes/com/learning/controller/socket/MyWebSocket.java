@@ -77,8 +77,6 @@ public class MyWebSocket {
 
     @OnMessage
     public void onMessage(String message, Session session) {
-        System.out.println("来自客户端的消息： " + message);
-
         MessageVo messageVo = (MessageVo) JsonUtil.jsonToObject(message, MessageVo.class);
         messageVo.setSender(this.loginName);
 
@@ -93,14 +91,11 @@ public class MyWebSocket {
             messageService.storeSingleMessage(messageVo);
         }
 
-        System.out.println("socket : " + messageVo.getContent() +" " + messageVo.getSender() + " re: " + messageVo.getReceiver());
-
         // 发给消息接收方
         messageVo.setSelf(false);
         for (MyWebSocket webSocket : webSocketSet) {
             try {
                 if (messageVo.getReceiver().equals(webSocket.loginName)) {
-                    System.out.println("服务器发送消息： " + JsonUtil.toJsonString(messageVo));
                     webSocket.sendMessage(messageVo);
                 }
             } catch (IOException e) {

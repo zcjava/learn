@@ -36,6 +36,18 @@
     <include refid="Base_Column_List" />
     from passwd
   </select>
+  <select id="selectByInterest" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from passwd
+    where interest like concat('%', #{interestCodeString}, '%')
+  </select>
+  <select id="selectByInterestExceptSelf" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from passwd
+    where interest like concat('%', #{interestCodeString}, '%') and login_name != #{selfLoginName}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from passwd
     where id = #{id,jdbcType=INTEGER}

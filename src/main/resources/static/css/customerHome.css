@@ -12,7 +12,6 @@ display: block;
 }
 
 body {
-line-height: 1;
 background: #fff;
 font-family: Verdana, Arial, Helvetica, sans-serif;
 color: #666;
@@ -46,7 +45,6 @@ background: #000 ;
 
 #main {
 width: 940px;
-height:600px;
 margin: 0 auto;
 padding-top: 30px;
 background: #D1E9E9;

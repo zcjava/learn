@@ -2,7 +2,9 @@ package com.learning.controller.ui.customer;
 
 import com.learning.common.util.TicketUtil;
 import com.learning.service.IFriendService;
+import com.learning.service.IPasswdService;
 import com.learning.vo.FriendVo;
+import com.learning.vo.InterestFriendVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,9 @@ public class HomeController {
     @Autowired
     private IFriendService friendService;
 
+    @Autowired
+    private IPasswdService passwdService;
+
     @RequestMapping("")
     public String home(Model model, HttpSession session) {
         String loginName = TicketUtil.getLoginName(session);
@@ -29,6 +34,10 @@ public class HomeController {
             model.addAttribute("friendList", friendVoList);
             model.addAttribute("friendCount", friendVoList.size());
         }
+
+        // 非好友列表
+        List<InterestFriendVo> interestFriendList = passwdService.getInterestFriend(loginName);
+        model.addAttribute("interestFriendList", interestFriendList);
         return "customer/index";
     }
 }

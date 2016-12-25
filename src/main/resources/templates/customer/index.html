@@ -70,13 +70,29 @@
                         </ul>
                     </div>
                 </div>
-                <h3>在线朋友列表</h3>
-                <ul>
-                    <li><a href="#">Curabitur sodales</a></li>
-                    <li><a href="#">Sed dignissim</a></li>
-                    <li><a href="#">Fusce nec</a></li>
-                    <li><a href="#">Nulla quis</a></li>
-                </ul>
+                <h3>非好友列表</h3>
+                <div class="panel-group" id="accordion">
+                    <div th:each="interestFriend, interestFriendStat : ${interestFriendList}" >
+                        <div class="panel-heading"  style="padding: 0px 15px;">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion"
+                                   th:href="@{'#' + ${interestFriend.interestCode}}" href="#collapseOne"
+                                   th:text="${interestFriend.interestMenu} + ' >>' ">
+                                    点击我进行 >>
+                                </a>
+                            </h4>
+                        </div>
+                        <div class="panel-collapse collapse" th:id="${interestFriend.interestCode}">
+                            <div class="panel-body">
+                                <ul style="margin-bottom: -10px;">
+                                    <div th:each="friend, friendStae : ${interestFriend.InterestFriendList}">
+                                        <li><a href="" target="_blank" th:href="@{'/chat/' + ${friend.loginName}}" th:text="${friend.loginName}"></a></li>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <h3>群聊列表</h3>
                 <ul>

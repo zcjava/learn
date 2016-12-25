@@ -19,13 +19,13 @@
         }
     </style>
 
-    <title th:text="#{home.title}">聊天窗口</title>
+    <title>聊天窗口</title>
 </head>
 <body>
     <div class="title">
         <div class="am-g am-g-fixed">
             <div class="am-u-sm-12">
-                <h1 class="am-text-primary">Chat Room</h1>
+                <h1 class="am-text-primary" th:text="'Chat Room With ' + ${friendLoginName}">Chat Room</h1>
             </div>
         </div>
     </div>
