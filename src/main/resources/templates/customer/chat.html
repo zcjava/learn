@@ -67,10 +67,12 @@
         </div>
     </div>
 </body>
-    <script type="text/javascript">
+    <script type="text/javascript" th:inline="javascript">
         $(function() {
             // 使昵称框获取焦点
             $('#message').focus();
+
+            var friendLoginName = [[${friendLoginName}]];
 
             var socket = null;
 
@@ -128,7 +130,7 @@
                     var date = new Date().Format("yyyy-MM-dd HH:mm:ss");
                     var messageJson = JSON.stringify({
                         content : message,
-                        receiver: 'violet',
+                        receiver: friendLoginName,
                         type : 2,
                         self : true,
                         date : date

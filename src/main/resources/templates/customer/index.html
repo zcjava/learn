@@ -59,10 +59,16 @@
             <aside id="sidebar">
                 <div th:if="${session.ticket != null}">
                     <h3>好友列表</h3>
-                    <ul>
-                        <li><a href="#">Blah, blah and all blah</a></li>
-                        <li><a href="#">More blah</a></li>
-                    </ul>
+                    <div th:if="${friendCount == 0}">
+                        <ul>
+                            <li>暂时没有好友</li>
+                        </ul>
+                    </div>
+                    <div th:if="${friendCount != 0}">
+                        <ul th:each="friend, friendStae : ${friendList}">
+                            <li><a href="" target="_blank" th:href="@{'/chat/' + ${friend.loginName}}" th:text="${friend.loginName}"></a></li>
+                        </ul>
+                    </div>
                 </div>
                 <h3>在线朋友列表</h3>
                 <ul>

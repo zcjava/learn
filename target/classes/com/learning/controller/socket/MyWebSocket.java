@@ -98,10 +98,8 @@ public class MyWebSocket {
         // 发给消息接收方
         messageVo.setSelf(false);
         for (MyWebSocket webSocket : webSocketSet) {
-            System.out.println("socket" + webSocketSet.size());
             try {
                 if (messageVo.getReceiver().equals(webSocket.loginName)) {
-                    System.out.println("send : " + messageVo.getReceiver() + " : " + webSocket.loginName );
                     System.out.println("服务器发送消息： " + JsonUtil.toJsonString(messageVo));
                     webSocket.sendMessage(messageVo);
                 }
