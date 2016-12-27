@@ -1,4 +1,4 @@
-CREATE database learning;
+CREATE database learning DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 use learning;
 -- passwd
 drop TABLE if exists passwd;
